@@ -1,0 +1,13 @@
+version: "3.7"
+services:
+  youtubep:
+    image: hoanghiepitvnn/youtube-dlp-aio
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: bridge
+    volumes:
+      - ./downloads:/downloads
+    command: |
+      https://www.youtube.com/watch?v=pTuj57uXWlk
+        -o "/downloads/%(title)s-%(duration)s.%(ext)s"
