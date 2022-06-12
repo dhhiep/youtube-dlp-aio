@@ -1,0 +1,36 @@
+name: Buildx latest
+on:
+  push:
+    branches: [master]
+    paths-ignore:
+      - .github/workflows/dockerhub-description.yml
+      - .github/workflows/labels.yml
+      - .github/CODEOWNERS
+      - .github/CONTRIBUTING.md
+      - .github/FUNDING.yml
+      - .github/labels.yml
+      - .gitignore
+      - docker-compose.yml
+      - LICENSE
+      - readme.md
+      - title.png
+jobs:
+  buildx:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Buildx setup
+        uses: crazy-max/ghaction-docker-buildx@v1
+      - name: Dockerhub login
+        run: echo ${{ secrets.DOCKER_PASSWORD }} | docker login -u ${{ secrets.DOCKER_USER }} --password-stdin 2>&1
+      - name: Run Buildx
+        run: |
+          docker buildx build \
+            --progress plain \
+            --platform=linux/amd64,linux/386,linux/arm64,linux/arm/v7,linux/arm/v6 \
+            --build-arg BUILD_DATE=`date -u +"%Y-%m-%dT%H:%M:%SZ"` \
+            --build-arg VCS_REF=`git rev-parse --short HEAD` \
+            --build-arg YOUTUBE_DL_OVERWRITE=latest \
+            -t hoanghiepitvnn/youtube-dlp-aio \
+            --push \
+            .

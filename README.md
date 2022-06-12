@@ -17,13 +17,6 @@
 - Docker healthcheck downloading `https://duckduckgo.com` with `wget` every 10 minutes
 - The Docker Hub image is updated automatically every 3 days, so simply update your image with `docker pull hoanghiepitvnn/youtube-dlp-aio`
 
-## Build and push to Docker Hub
-
-```
-docker-compose up --build
-docker push hoanghiepitvnn/youtube-dlp-aio
-```
-
 ## Setup
 
 **1. Add alias commands below to ~/.bashrc or ~/.zshrc**
