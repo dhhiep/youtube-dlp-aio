@@ -37,7 +37,7 @@ alias yt_video2k="ytdl_base --format 'bestvideo[height>=1400+height<1500]+bestau
 
 # Commands to download audio
 alias yt="yt_audio --output '/downloads/%(title)s.%(ext)s'"
-alias ytl="yt_audio --write-link --output '/downloads/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
+alias ytl="yt_audio --output '/downloads/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s'"
 
 # Commands to download video
 alias ytv="yt_video --output '/downloads/%(title)s.%(ext)s'"
